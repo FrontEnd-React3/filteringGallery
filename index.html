@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Protfolio filter</title>
+</head>
+
+<body>
+    <section>
+        <ul>
+            <li class="list active" data-filter="all">All</li>
+            <li class="list" data-filter="mobile">Mobile</li>
+            <li class="list" data-filter="camera">Camera</li>
+            <li class="list" data-filter="watch">Watch</li>
+            <li class="list" data-filter="shoe">Shoe</li>
+            <li class="list" data-filter="headphone">Headphone</li>
+        </ul>
+        <label for="myPromo" class="promoclass">
+            <!-- in feite moet de label sluiten als je for gebruikt -->
+            <input onclick="promoFunction()" id="myPromo" type="checkbox" name="promocheck" value="promobtn">
+            Only show returns
+        </label>
+
+        <div class="product">
+            <div class="itembox promo mobile watch camera"><img src="img/mobile1.jpg" title="Mobile 1"></div>
+            <div class="itembox shoe"><img src="img/shoe1.jpg" title="shoe 1"></div>
+            <div class="itembox watch"><img src="img/watch1.jpg" title="Watch 1"></div>
+            <div class="itembox camera"><img src="img/camera1.jpg" title="camera 1"></div>
+            <div class="itembox promo headphone"><img src="img/headphone1.jpg" title="Headphone 1"></div>
+            <div class="itembox mobile watch camera"><img src="img/mobile2.jpg" title="Mobile 2"></div>
+            <div class="itembox promo shoe"><img src="img/shoe2.jpg" title="shoe 2"></div>
+            <div class="itembox watch"><img src="img/watch2.jpg" title="Watch 2"></div>
+            <div class="itembox promo camera"><img src="img/camera2.jpg" title="camera 2"></div>
+            <div class="itembox headphone"><img src="img/headphone2.jpg" title="Headphone 2"></div>
+            <div class="itembox mobile watch camera"><img src="img/mobile3.jpg" title="Mobile 3"></div>
+            <div class="itembox shoe"><img src="img/shoe3.jpg" title="shoe 3"></div>
+            <div class="itembox watch"><img src="img/watch3.jpg" title="Watch 3"></div>
+            <div class="itembox promo camera"><img src="img/camera3.jpg" title="camera 3"></div>
+            <div class="itembox headphone"><img src="img/headphone3.jpg" title="Headphone 3"></div>
+            <div class="itembox promo mobile watch camera"><img src="img/mobile4.jpg" title="Mobile 4"></div>
+            <div class="itembox shoe"><img src="img/shoe4.jpg" title="shoe 4"></div>
+            <div class="itembox promo watch"><img src="img/watch4.jpg" title="Watch 4"></div>
+            <div class="itembox promo mobile watch camera"><img src="img/mobile5.jpg" title="Mobile 5"></div>
+            <div class="itembox headphone"><img src="img/headphone4.jpg" title="Headphone 4"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="capyright">
+            <p>&copy; <a href="index.html"> This page</a> <span class="by">BY: <a href="#">Khaled Abumarasa</a> </span>
+            </p>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".list").click(function (event) {
+                const value = $(this).attr("data-filter");
+                if (value == "all") {
+                    console.log("all");
+                    $(".itembox").show("1000");
+                } else {
+                    console.log("." + value);
+
+                    $('.itembox').not("." + value).hide('1000');
+                    $('.itembox').filter("." + value).show('1000');
+
+                }
+                $('.list').click(function (e) {
+                    $(this).addClass('active').siblings().removeClass('active');
+                })
+            });
+        });
+    </script>
+    <script>
+        function myFunction() {
+            const value = $(this).attr("data-filter");
+
+            var checkBox = document.getElementById("myCheck");
+            var text = document.getElementById("text");
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+
+        function promoFunction() {
+            const value = $(this).attr("data-filter");
+            console.log("." + value + " promofunction");
+            let procheckBox = document.getElementById("myPromo");
+            let text = document.getElementById("showPromo");
+            if (procheckBox.checked == true) {
+                // $('.itembox').not(".promo").hide('1000');
+                console.log(".promo", "." + value)
+                $('.itembox').not(".promo", "." + value).hide('1000');
+                $('.itembox').filter(".promo", "." + value).show('1000');
+
+            } else {
+                $('.itembox').show('1000');
+            }
+        }
+
+        // function promoFunction() {
+        //     if (procheckBox.checked == false) {
+        //         $('.itembox').filter("." + value).show('1000');
+        //     } else {}
+        // }
+    </script>
+</body>
+
+</html>
